@@ -1,0 +1,23 @@
+<h1>Searching for - <%= @search_term %></h1>
+
+<% if @recipes.nil? %>
+
+<p>No recipes found for <%= @search_term %>. Sorry!</p>
+
+<% else %>
+
+<table border="1">
+    <tr>
+        <th>Image</th>
+        <th>Name</th>
+        <th>Social Rank</th>
+    </tr>
+    <% @recipes.each do |course| %>
+    <tr class=<%= cycle('even', 'odd' ) %>>
+        <td><a href="<%= recipe["source_url"] %>"><%= image_tag(recipe["image_url"], height: '100', width: '100')%></a></td>
+        <td><%= link_to "<%= sanitize(recipe["title"]) %>", "<%= recipe["source_url"] %>" %></td>
+        <td><%= recipe["social_rank"] %></td>
+    </tr>
+    <% end %>
+</table>
+
